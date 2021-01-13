@@ -67,12 +67,22 @@ $(document).ready(function() {
       if (!willDelete) {
         return;
       }
-      // 调用删除接口，用id来拼出请求的url
+      // Ajax请求调用删除接口，用id来拼出请求的url
+      // 由于laravel的Ajax请求已经封装好csrf_token，所以无需再手动添加
       axios.delete('/user_addresses/destroy/' + id)
-        .then(function() {
-          // 请求成功之后重新加载页面
-          location.reload();
-        })
+        .then(function(data) {
+          // 删除成功后提示
+          swal({
+            /*title: data.data.message, // 显示后台返回操作的结果
+            text: "您已成功删除当前收货地址!",*/
+            title: "删除成功！",
+            icon: "success",
+          })
+          .then(function() {
+            // 请求成功之后重新加载页面
+            location.reload();
+          });
+        });
     });
   });
 });
