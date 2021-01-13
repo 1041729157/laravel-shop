@@ -28,8 +28,13 @@
   	  	  	  <td>{{ $address->zip }}</td>
   	  	  	  <td>{{ $address->contact_phone }}</td>
   	  	  	  <td>
-  	  	  	  	<button class="btn btn-primary">修改</button>
-  	  	  	  	<button class="btn btn-danger">删除</button>
+  	  	  	  	<a href="{{ route('user_addresses.edit', ['user_address' => $address->id]) }}" class="btn btn-primary">修改</a>
+                <!-- <form method="post" action="{{ route('user_addresses.destroy', ['user_address' => $address->id]) }}" style="display: inline-block;">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger" type="submit">删除</button>
+                </form> -->
+                <button class="btn btn-danger btn-del-address" type="button" data-id="{{ $address->id }}">删除</button>
   	  	  	  </td>
   	  	  	</tr>
   	  	  	@endforeach
@@ -39,4 +44,37 @@
   	</div>
   </div>
 </div>
+@stop
+
+@section('scriptAfterJs')
+<script type="text/javascript">
+$(document).ready(function() {
+  // 点击事件
+  $('.btn-del-address').click(function() {
+    // 获取 data-id 属性的值
+    var id = $(this).data('id');
+    // 调用 sweetalert JS库
+    swal({
+      title: "确认要删除该地址？",
+      icon: "warning",
+      buttons: ["取消", "确定"],
+      dangerMode: true,
+    })
+    // 用户点击按钮后会触发这个回调函数
+    // 用户点击确定 willDelete 的值为 true , 否则为 false
+    .then(function(willDelete) {
+      // 用户点击取消，直接返回
+      if (!willDelete) {
+        return;
+      }
+      // 调用删除接口，用id来拼出请求的url
+      axios.delete('/user_addresses/destroy/' + id)
+        .then(function() {
+          // 请求成功之后重新加载页面
+          location.reload();
+        })
+    });
+  });
+});
+</script>
 @stop
