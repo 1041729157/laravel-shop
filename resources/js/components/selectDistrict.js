@@ -69,15 +69,16 @@ Vue.component('select-district', {
   methods: {
     // 
     setFromValue(value) {
-      // 过滤掉空值
+      // 过滤掉空值(值为null的元素)
       value = _.filter(value);
       // 如果数组长度为0，则将省清空（由于我们定义了观察器，会联动触发将城市和地区清空）
       if (value.length === 0) {
         this.provinceId = '';
         return;
       }
-      // 从当前省列表中找到与数组第一个元素同名的项的索引
-      // o => o === value[0] 箭头函数
+      // 从当前省列表中找到与数组第一个元素同名的项的索引，简单来说就是匹配provinces的索引(不是key)赋值给provinceId
+      // o => o === value[0] 箭头函数，o 获取到的就是 provinces
+      // _.findKey(匹配的数据object, 匹配条件)，返回数据中符合条件的索引
       const provinceId = _.findKey(this.provinces, o => o === value[0]);
       // 没找到，清空省的值
       if (!provinceId) {

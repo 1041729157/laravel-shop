@@ -44,6 +44,8 @@
             <div class="col-sm-3">
               <select class="form-control" v-model="provinceId">
                 <option value="">选择省</option>
+                <!-- v-for='(value(值),key(键),index(索引)) in obj' -->
+                <!-- : 是Vue中v-bind:的缩写 -->
                 <option v-for="(name, id) in provinces" :value="id">@{{ name }}</option>
               </select>
             </div>

@@ -13,9 +13,9 @@ require('./components/selectDistrict'); //地区选择组件
 require('./components/UserAddressesCreateAndEdit');
 
 /**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
+* 以下代码块可用于自动注册您的
+* Vue组件。它将递归地扫描这个目录中的Vue
+* 组件，并自动用它们的“basename”注册它们.
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
@@ -26,9 +26,9 @@ require('./components/UserAddressesCreateAndEdit');
 
 
 /**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
+ * 接下来，我们将创建一个新的Vue应用程序实例并将其附加到
+ * 这一页。然后，您可以开始向该应用程序添加组件
+ * 或者定制JavaScript脚手架以满足您的独特需求
  */
 
 const app = new Vue({
