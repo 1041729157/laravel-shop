@@ -3,22 +3,22 @@
 return [
 
     /*
-     * 站点标题 
+     * 站点标题
      */
     'name' => 'Laravel Shop',
 
     /*
-     * 页面顶部 LOGO
+     * 页面顶部 Logo
      */
     'logo' => '<b>Laravel</b> Shop',
 
     /*
-     * 页面顶部小 logo
+     * 页面顶部小 Logo
      */
     'logo-mini' => '<b>LS</b>',
 
     /*
-     * Laravel-Admin 启动文件路径 
+     * Laravel-Admin 启动文件路径
      */
     'bootstrap' => app_path('Admin/bootstrap.php'),
 
@@ -35,7 +35,7 @@ return [
     ],
 
     /*
-     * Laravel-Admin 安装目录
+     * Laravel-Admin 的安装目录
      */
     'directory' => app_path('Admin'),
 
@@ -47,7 +47,7 @@ return [
     /*
      * 是否使用 https
      */
-    'https' => env('ADMIN_HTTPS', false),
+    'secure' => env('ADMIN_HTTPS', false),
 
     /*
      * Laravel-Admin 用户认证设置
@@ -55,8 +55,6 @@ return [
     'auth' => [
 
         'controller' => App\Admin\Controllers\AuthController::class,
-
-        'guard' => 'admin',
 
         'guards' => [
             'admin' => [
@@ -75,7 +73,7 @@ return [
         // 是否展示 保持登录 选项
         'remember' => true,
 
-        // 登录页面URL
+        // 登录页面 URL
         'redirect_to' => 'auth/login',
 
         // 无需用户认证即可访问的地址
@@ -83,18 +81,16 @@ return [
             'auth/login',
             'auth/logout',
             '_handle_action_',
-        ],
+        ]
     ],
 
     /*
      * Laravel-Admin 文件上传设置
      */
     'upload' => [
-
         // 对应 filesystem.php 中的 disks
-        'disk' => 'admin',
+        'disk' => 'public',
 
-        // 上面磁盘下的图像和文件上传路径
         'directory' => [
             'image' => 'images',
             'file'  => 'files',
@@ -125,7 +121,7 @@ return [
         'menu_table' => 'admin_menu',
         'menu_model' => Encore\Admin\Auth\Database\Menu::class,
 
-        // 多对多关联中间件
+        // 多对多关联中间表
         'operation_log_table'    => 'admin_operation_log',
         'user_permissions_table' => 'admin_user_permissions',
         'role_users_table'       => 'admin_role_users',
@@ -134,12 +130,9 @@ return [
     ],
 
     /*
-     * Laravel-Admin 操作日志设置 
+     * Laravel-Admin 操作日志设置
      */
     'operation_log' => [
-
-        'enable' => true,
-
         /*
          * 只记录以下类型的请求
          */
@@ -151,36 +144,28 @@ return [
          * 不记操作日志的路由
          */
         'except' => [
-            'admin/auth/logs*',
+           'admin/auth/logs*',
         ],
     ],
 
     /*
-    |--------------------------------------------------------------------------
-    | 路由是否检查权限
-    |--------------------------------------------------------------------------
+    * 路由是否检查权限
     */
     'check_route_permission' => true,
 
     /*
-    |--------------------------------------------------------------------------
-    | 菜单是否检查权限
-    |--------------------------------------------------------------------------
+     * 菜单是否检查权限
     */
     'check_menu_roles'       => true,
 
     /*
-    |--------------------------------------------------------------------------
-    | 管理员默认头像
-    |--------------------------------------------------------------------------
+    * 管理员默认头像
     */
     'default_avatar' => '/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg',
 
     /*
-    |--------------------------------------------------------------------------
-    | 地图组件提供商
-    |--------------------------------------------------------------------------
-    */
+     * 地图组件提供商
+     */
     'map_provider' => 'google',
 
     /*
@@ -190,10 +175,8 @@ return [
     'skin' => 'skin-blue-light',
 
     /*
-    |--------------------------------------------------------------------------
-    | 后台布局
-    |--------------------------------------------------------------------------
-    */
+     * 后台布局
+     */
     'layout' => ['sidebar-mini', 'sidebar-collapse'],
 
     /*
@@ -225,13 +208,11 @@ return [
     * 压缩资源文件
     */
     'minify_assets' => [
-
         // 不需要被压缩的资源
         'excepts' => [
 
         ],
     ],
-
     /*
     * 启用菜单搜索
     */

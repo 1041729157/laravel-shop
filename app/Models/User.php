@@ -6,10 +6,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\UserAddress;
+use Encore\Admin\Traits\DefaultDatetimeFormat; // 修改后台注册时间显示格式
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use Notifiable, DefaultDatetimeFormat;
 
     protected $fillable = [
         'name', 'email', 'password',
