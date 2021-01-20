@@ -19,6 +19,6 @@ class Product extends Model
     ];
 
     public function skus() {
-    	return $this->hasMary(ProductSku::class);
+    	return $this->hasMany(ProductSku::class);
     }
 }
