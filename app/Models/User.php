@@ -20,7 +20,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
+    // 数据类型转换
     protected $casts = [
+        // 转换为 datetime 时间类型，格式为 'Y-M-D H:m:s'
         'email_verified_at' => 'datetime',
     ];
 
