@@ -88,7 +88,7 @@ return [
      * Laravel-Admin 文件上传设置
      */
     'upload' => [
-        // 对应 filesystem.php 中的 disks
+        // 对应 filesystems.php 中的 disks
         'disk' => 'public',
 
         'directory' => [
