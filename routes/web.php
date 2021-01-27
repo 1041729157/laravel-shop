@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/products')->name('root');
 Route::get('products', 'ProductsController@index')->name('products.index');
+Route::get('products/{product}', 'ProductsController@show')->name('products.show');
 
 // 用户认证脚手架路由
 Auth::routes(['verify' => true]); //'verify' => true 启用邮箱验证相关的路由
