@@ -29,4 +29,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function addresses() {
         return $this->hasMany(UserAddress::class);
     }
+
+    public function favoriteProducts() {
+        return $this->belongsToMany(Product::class, 'user_favorite_products')
+                    // 代表中间表带有时间戳字段
+                    ->withTimestamps()
+                    // 代表默认的排序方式是根据中间表的创建时间倒序排序
+                    ->orderBy('user_favorite_products.created_at', 'desc');
+    }
 }
