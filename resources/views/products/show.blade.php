@@ -21,6 +21,7 @@
         <div class="skus">
           <label>选择</label>
           <!-- data-toggle 代表以什么事件触发 -->
+          <!-- data-toggle="buttons" bootstrap标签选择器(active选择器) -->
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             @foreach($product->skus as $sku)
               <!-- data-toggle="tooltip" tooltip插件 是 bootstrap 的提示工具 -->
@@ -113,6 +114,38 @@
   	        });
   	    });
   	});
+
+    // 加入购物车
+    $('.btn-add-to-cart').click(function() {
+      axios.post('{{ route('cart.add') }}', {
+        // val()返回对应的value属性，val(a)括号内有内容则为设置value属性
+        // label.active 触发选择器后出现名为active的类(页面可以看到)
+        sku_id: $('label.active input[name=skus]').val(),
+        amount: $('.cart_amount input').val(),
+      })
+        .then(function () {
+          swal('加入购物车成功', '', 'success');
+        }, function (error) {
+          if (error.response.status === 401) {
+            swal('请先登录', '', 'error');
+          } else if (error.response.status === 422) {
+            var html = '<div>'
+            // _.each() lodash的遍历方法
+            // _.each(collection, iteratee) iteratee 调用3个参数： (value, index|key, collection)
+            // 第一层遍历获取到所以错误的值的集合
+            _.each(error.response.data.errors, function (errors) {
+              // 第二层遍历不知道干什么用的，去除了输出结果也一样
+              _.each(errors, function (error) {
+                html += error + '<br>';
+              })
+            });
+            html += '<div>';
+            swal({content: $(html)[0], icon: 'error'})
+          } else {
+            swal('系统错误', '', 'error');
+          }
+        })
+    });
   });
 </script>
 @stop

@@ -71,6 +71,7 @@
   	$('.search-form input[name=search]').val(filters.search);
   	// 保留用户的排序内容
   	$('.search-form select[name=order]').val(filters.order);
+  	// js on()绑定事件，change 当对象或选中区的内容改变时触发
   	// 通过监听下拉框的 change 事件来触发表单自动提交(触发排序)
   	$('.search-form select[name=order]').on('change', function () {
   		$('.search-form').submit();

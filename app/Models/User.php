@@ -37,4 +37,9 @@ class User extends Authenticatable implements MustVerifyEmail
                     // 代表默认的排序方式是根据中间表的创建时间倒序排序
                     ->orderBy('user_favorite_products.created_at', 'desc');
     }
+
+    // 用户与购物车内的商品(SKU)的一对多关系
+    public function cartItems() {
+        return $this->hasMany(CartItem::class);
+    }
 }
