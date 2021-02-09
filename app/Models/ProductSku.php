@@ -11,6 +11,7 @@ class ProductSku extends Model
     	'title', 'description', 'price', 'stock'
     ];
 
+    // 一个SKU属于一个商品
     public function product() {
     	return $this->belongsTo(Product::class);
     }
