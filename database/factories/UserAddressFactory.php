@@ -6,6 +6,7 @@ use App\Models\UserAddress;
 use Faker\Generator as Faker;
 
 $factory->define(UserAddress::class, function (Faker $faker) {
+
     $addresses = [
     	["北京市", "市辖区", "东城区"],
         ["河北省", "石家庄市", "长安区"],

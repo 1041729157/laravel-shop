@@ -61,6 +61,30 @@
           {!! $product->description !!}
         </div>
         <div role="tabpanel" class="tab-pane" id="product-reviews-tab">
+          <!-- 评论列表开始 -->
+          <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <td>用户</td>
+              <td>商品</td>
+              <td>评分</td>
+              <td>评价</td>
+              <td>时间</td>
+            </tr>
+            </thead>
+            <tbody>
+              @foreach($reviews as $review)
+              <tr>
+                <td>{{ $review->order->user->name }}</td>
+                <td>{{ $review->productSku->title }}</td>
+                <td>{{ str_repeat('★', $review->rating) }}{{ str_repeat('☆', 5 - $review->rating) }}</td>
+                <td>{{ $review->review }}</td>
+                <td>{{ $review->reviewed_at->format('Y-m-d H:i') }}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+          <!-- 评论列表结束 -->
         </div>
       </div>
     </div>
@@ -116,7 +140,8 @@
   	});
 
     // 加入购物车
-    $('.btn-add-to-cart').click(function() {
+    $('.btn-add-to-cart').click(function () {
+      // 请求加入购物车接口
       axios.post('{{ route('cart.add') }}', {
         // val()返回对应的value属性，val(a)括号内有内容则为设置value属性
         // label.active 触发选择器后出现名为active的类(页面可以看到)

@@ -10,12 +10,14 @@ class CartItem extends Model
     public $timestamps = false;
 
     // 购物车内的商品只对应一个用户
-    public function user() {
-    	return $this->belongsTo(User::class);
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     // 购物车内的一种商品对应一个SKU
-    public function productSku() {
-    	return $this->belongsTo(ProductSku::class);
+    public function productSku()
+    {
+        return $this->belongsTo(ProductSku::class);
     }
 }

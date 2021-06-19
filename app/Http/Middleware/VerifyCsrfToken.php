@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+    	// 由于回调地址是给支付宝的服务器调用的，肯定不会有 CSRF Token，所以需要把这个 URL 加到 CSRF 白名单
+        'payment/alipay/notify',
     ];
 }

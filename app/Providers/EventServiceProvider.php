@@ -18,6 +18,14 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        // 事件和监听器关联起来
+        \App\Events\OrderPaid::class => [
+            \App\Listeners\UpdateProductSoldCount::class, // 显示交易数量
+            \App\Listeners\SendOrderPaidMail::class, // 交易成功发送邮件通知
+        ],
+        \App\Events\OrderReviewed::class => [
+            \App\Listeners\UpdateProductRating::class, // 修改商品评分和评价
+        ],
     ];
 
     /**

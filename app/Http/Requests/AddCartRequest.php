@@ -13,6 +13,7 @@ class AddCartRequest extends Request
                 'required',
                 //校验 sku_id 的第二个规则是一个闭包校验规则，这个闭包接受 3 个参数，分别是参数名、参数值和错误回调
                 function ($attribute, $value, $fail) {
+                    // if条件内也可以赋值，不过只在当前作用域有效
                     if (!$sku = ProductSku::find($value)) {
                         return $fail('该商品不存在');
                     }
@@ -32,15 +33,17 @@ class AddCartRequest extends Request
     }
 
     // 汉化，前端出现amount错误提示时会变更为'商品数量'
-    public function attributes() {
+    public function attributes()
+    {
         return [
-            'amount' => '商品数量',
+            'amount' => '商品数量'
         ];
     }
 
-    public function messages() {
+    public function messages()
+    {
         return [
-            'sku_id.required' => '请选择商品',
+            'sku_id.required' => '请选择商品'
         ];
     }
 }
